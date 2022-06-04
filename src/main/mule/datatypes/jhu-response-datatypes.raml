@@ -1,0 +1,50 @@
+#%RAML 1.0 Library
+usage: Different response types for JHU
+
+types:
+  jhuDailyGlobalResponse:
+    type: object
+    properties:
+      countryName:
+        displayName: Country Name
+        description: Country Name
+        type: string
+        required: true
+      countryCode: !include countryCode.raml
+      historicData:
+        type: array
+        minItems: 0
+        items: !include covidMetrics.raml
+
+  jhuDailyUSResponse:
+    type: object
+    properties:
+      stateName:
+        displayName: State Name
+        description: State Name
+        type: string
+        required: true
+      stateCode: !include usStates.raml
+      historicData:
+        type: array
+        minItems: 0
+        items: !include covidMetrics.raml
+
+  jhuTimeSeriesResponse:
+    type: object
+    properties:
+      stateName:
+        displayName: State Name
+        description: State Name
+        type: string
+        required: true
+      countyName:
+        displayName: County Name
+        description: County Name
+        type: string
+        required: true
+      stateCode: !include usStates.raml
+      historicData:
+        type: array
+        minItems: 0
+        items: !include covidMetrics.raml
